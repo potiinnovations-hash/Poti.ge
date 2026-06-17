@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    # IMPORTANT: Keep /home/potihub/public_html as target deployment directory
+    - export DEPLOYPATH=/home/potihub/public_html
+    - /bin/rsync -a --exclude='.git' --exclude='.github' ./ $DEPLOYPATH

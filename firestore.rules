@@ -1,0 +1,60 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'potiinnovations@gmail.com' ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    // public read for all these
+    match /catalog/{item} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /settings/{item} {
+      allow read: if true;
+      allow write: if isAdmin() || (request.resource.data != null && request.resource.data.syncSecret == 'poti_fb_sync_secure_token_2026_xyz');
+    }
+    match /notifications/{item} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /categories/{item} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /news/{item} {
+      allow read: if true;
+      allow write: if isAdmin() || (request.resource.data != null && request.resource.data.syncSecret == 'poti_fb_sync_secure_token_2026_xyz');
+    }
+    match /outages/{item} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /initiatives/{item} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /initiative_categories/{item} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /admins/{item} {
+      allow read: if isSignedIn() && request.auth.uid == item;
+      allow write: if isAdmin();
+    }
+
+    // fallback deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

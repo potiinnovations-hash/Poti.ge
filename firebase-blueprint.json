@@ -1,0 +1,172 @@
+{
+  "entities": {
+    "catalog": {
+      "title": "Catalog Item",
+      "description": "Item in the city directory",
+      "type": "object",
+      "properties": {
+        "titleKa": { "type": "string" },
+        "titleEn": { "type": "string" },
+        "categoryId": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "descriptionKa": { "type": "string" },
+        "descriptionEn": { "type": "string" },
+        "targetUrl": { "type": "string" },
+        "redirectDirectly": { "type": "boolean" },
+        "phone": { "type": "string" },
+        "price": { "type": "string" },
+        "priceEn": { "type": "string" },
+        "location": { "type": "string" },
+        "addressKa": { "type": "string" },
+        "addressEn": { "type": "string" },
+        "workHours": { "type": "string" },
+        "gallery": { "type": "array", "items": { "type": "string" } },
+        "facebookUrl": { "type": "string" },
+        "facebookName": { "type": "string" },
+        "facebookPostHashtag": { "type": "string" },
+        "email": { "type": "string" },
+        "showWebsite": { "type": "boolean" },
+        "ctaButton": {
+          "type": "object",
+          "properties": {
+            "textKa": { "type": "string" },
+            "textEn": { "type": "string" },
+            "url": { "type": "string" },
+            "icon": { "type": "string" }
+          }
+        },
+        "order": { "type": "integer" },
+        "isUnderDevelopment": { "type": "boolean" }
+      }
+    },
+    "settings": {
+      "title": "Global Settings",
+      "description": "App-wide configuration",
+      "type": "object",
+      "properties": {
+        "primaryFont": { "type": "string" },
+        "secondaryFont": { "type": "string" },
+        "headerTextKa": { "type": "string" },
+        "headerTextEn": { "type": "string" },
+        "headerDescKa": { "type": "string" },
+        "headerDescEn": { "type": "string" },
+        "customFonts": { 
+          "type": "array", 
+          "items": { 
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "data": { "type": "string" }
+            }
+          } 
+        },
+        "logoUrl": { "type": "string" },
+        "titleColor": { "type": "string" },
+        "textColor": { "type": "string" },
+        "buttonColor": { "type": "string" },
+        "facebookSyncEnabled": { "type": "boolean" },
+        "facebookSyncHashtag": { "type": "string" },
+        "lastFacebookSyncTimestamp": { "type": "string" }
+      }
+    },
+    "notifications": {
+      "title": "Notification",
+      "description": "Global banner notification",
+      "type": "object",
+      "properties": {
+        "messageKa": { "type": "string" },
+        "messageEn": { "type": "string" },
+        "active": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      }
+    },
+    "category": {
+      "title": "Category",
+      "description": "Catalog item category",
+      "type": "object",
+      "properties": {
+        "titleKa": { "type": "string" },
+        "titleEn": { "type": "string" },
+        "icon": { "type": "string" },
+        "order": { "type": "integer" }
+      }
+    },
+    "news": {
+      "title": "News",
+      "description": "News and updates",
+      "type": "object",
+      "properties": {
+        "titleKa": { "type": "string" },
+        "titleEn": { "type": "string" },
+        "contentKa": { "type": "string" },
+        "contentEn": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "sourceUrl": { "type": "string" },
+        "relatedItemId": { "type": "string" },
+        "createdAt": { "type": "string" }
+      }
+    },
+    "outages": {
+      "title": "Municipal Service Outage",
+      "description": "Planned or unplanned municipal service outage (power, water, gas, roads)",
+      "type": "object",
+      "properties": {
+        "service": { "type": "string", "enum": ["power", "water", "gas", "roads"] },
+        "disconnectionAreaKa": { "type": "string" },
+        "disconnectionAreaEn": { "type": "string" },
+        "reasonKa": { "type": "string" },
+        "reasonEn": { "type": "string" },
+        "disconnectionDate": { "type": "string" },
+        "reconnectionDate": { "type": "string" },
+        "affectedSubscribers": { "type": "string" },
+        "createdAt": { "type": "string" }
+      }
+    },
+    "initiatives": {
+      "title": "Project or Activity",
+      "description": "A project, grant, challenge, or information post",
+      "type": "object",
+      "properties": {
+        "titleKa": { "type": "string" },
+        "titleEn": { "type": "string" },
+        "categoryId": { "type": "string" },
+        "tag": { "type": "string", "enum": ["projects", "grants", "challenges", "info"] },
+        "icon": { "type": "string" },
+        "color": { "type": "string" },
+        "descKa": { "type": "string" },
+        "descEn": { "type": "string" },
+        "fullDetailsKa": { "type": "string" },
+        "fullDetailsEn": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "ctaTextKa": { "type": "string" },
+        "ctaTextEn": { "type": "string" },
+        "ctaUrl": { "type": "string" },
+        "ctaIcon": { "type": "string" },
+        "order": { "type": "integer" },
+        "createdAt": { "type": "string" }
+      }
+    },
+    "initiative_categories": {
+      "title": "Initiative Category",
+      "description": "Category for Projects & Activities",
+      "type": "object",
+      "properties": {
+        "titleKa": { "type": "string" },
+        "titleEn": { "type": "string" },
+        "tag": { "type": "string" },
+        "icon": { "type": "string" },
+        "order": { "type": "integer" }
+      }
+    }
+  },
+  "firestore": {
+    "catalog": { "schema": "catalog", "description": "Catalog items" },
+    "categories": { "schema": "category", "description": "Catalog categories" },
+    "settings": { "schema": "settings", "description": "App settings" },
+    "notifications": { "schema": "notifications", "description": "Notifications" },
+    "news": { "schema": "news", "description": "News items" },
+    "outages": { "schema": "outages", "description": "Municipal service outages" },
+    "initiatives": { "schema": "initiatives", "description": "Projects & Activities items" },
+    "initiative_categories": { "schema": "initiative_categories", "description": "Categories of Projects & Activities" }
+  }
+}
