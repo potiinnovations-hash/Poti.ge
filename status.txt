@@ -1,7 +1,7 @@
 1:"$Sreact.fragment"
 7:I[7150,[],""]
 :HL["/_next/static/media/e4af272ccee01ff0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/_next/static/css/3c5a4ba1e82e3938.css","style"]
+:HL["/_next/static/css/330bb6206c3eb916.css","style"]
 2:Tdff,
               (function() {
                 if (typeof window !== 'undefined' && !window.__JSON_STRINGIFY_PATCHED__) {
@@ -71,16 +71,16 @@
                   navigator.serviceWorker.register('/sw.js');
                 });
               }
-            0:{"P":null,"b":"emJ8JQ3oDhvO_OBEqOXD1","p":"","c":["","status"],"i":false,"f":[[["",{"children":["status",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/3c5a4ba1e82e3938.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"ka","children":["$","body",null,{"className":"antialiased","children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3"]}]}]]}],{"children":["status","$L4",{"children":["__PAGE__","$L5",{},null,false]},null,false]},null,false],"$L6",false]],"m":"$undefined","G":["$7",[]],"s":false,"S":true}
-8:I[6174,["992","static/chunks/bc9e92e6-2ef0a3575fa56451.js","811","static/chunks/ae6eea6a-989a34551986aacb.js","986","static/chunks/986-bc82cbf940c33b06.js","248","static/chunks/248-ba82e77fd443d7c5.js","177","static/chunks/app/layout-a060c7d74c10d123.js"],"ThemeProvider"]
+            0:{"P":null,"b":"shhowM097FkQPpwNeCuR3","p":"","c":["","status"],"i":false,"f":[[["",{"children":["status",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/330bb6206c3eb916.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"ka","children":["$","body",null,{"className":"antialiased","children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3"]}]}]]}],{"children":["status","$L4",{"children":["__PAGE__","$L5",{},null,false]},null,false]},null,false],"$L6",false]],"m":"$undefined","G":["$7",[]],"s":false,"S":true}
+8:I[6174,["992","static/chunks/bc9e92e6-b5a02c420046d4a4.js","811","static/chunks/ae6eea6a-989a34551986aacb.js","986","static/chunks/986-bc82cbf940c33b06.js","248","static/chunks/248-6cdd8dd31e925fc2.js","177","static/chunks/app/layout-615aab6e3307572c.js"],"ThemeProvider"]
 9:I[9766,[],""]
 a:I[3194,["986","static/chunks/986-bc82cbf940c33b06.js","39","static/chunks/app/error-261e70df31876685.js"],"default"]
 b:I[8924,[],""]
 c:I[3293,["986","static/chunks/986-bc82cbf940c33b06.js","345","static/chunks/app/not-found-12715857ce8b0560.js"],"default"]
-d:I[1081,["992","static/chunks/bc9e92e6-2ef0a3575fa56451.js","811","static/chunks/ae6eea6a-989a34551986aacb.js","986","static/chunks/986-bc82cbf940c33b06.js","248","static/chunks/248-ba82e77fd443d7c5.js","177","static/chunks/app/layout-a060c7d74c10d123.js"],"default"]
-e:I[107,["992","static/chunks/bc9e92e6-2ef0a3575fa56451.js","811","static/chunks/ae6eea6a-989a34551986aacb.js","986","static/chunks/986-bc82cbf940c33b06.js","248","static/chunks/248-ba82e77fd443d7c5.js","177","static/chunks/app/layout-a060c7d74c10d123.js"],"default"]
+d:I[1081,["992","static/chunks/bc9e92e6-b5a02c420046d4a4.js","811","static/chunks/ae6eea6a-989a34551986aacb.js","986","static/chunks/986-bc82cbf940c33b06.js","248","static/chunks/248-6cdd8dd31e925fc2.js","177","static/chunks/app/layout-615aab6e3307572c.js"],"default"]
+e:I[107,["992","static/chunks/bc9e92e6-b5a02c420046d4a4.js","811","static/chunks/ae6eea6a-989a34551986aacb.js","986","static/chunks/986-bc82cbf940c33b06.js","248","static/chunks/248-6cdd8dd31e925fc2.js","177","static/chunks/app/layout-615aab6e3307572c.js"],"default"]
 f:I[1959,[],"ClientPageRoot"]
-10:I[9725,["992","static/chunks/bc9e92e6-2ef0a3575fa56451.js","811","static/chunks/ae6eea6a-989a34551986aacb.js","986","static/chunks/986-bc82cbf940c33b06.js","248","static/chunks/248-ba82e77fd443d7c5.js","758","static/chunks/758-b34306ba37fa759d.js","907","static/chunks/907-7e6de37758d0c96d.js","557","static/chunks/app/status/page-6ca80b86f912c618.js"],"default"]
+10:I[9725,["992","static/chunks/bc9e92e6-b5a02c420046d4a4.js","811","static/chunks/ae6eea6a-989a34551986aacb.js","986","static/chunks/986-bc82cbf940c33b06.js","248","static/chunks/248-6cdd8dd31e925fc2.js","979","static/chunks/979-f827a00fc59bc8d9.js","158","static/chunks/158-7109a59ac562eb11.js","557","static/chunks/app/status/page-e4f859f395377478.js"],"default"]
 13:I[4431,[],"OutletBoundary"]
 15:I[5278,[],"AsyncMetadataOutlet"]
 17:I[4431,[],"ViewportBoundary"]
@@ -95,5 +95,5 @@ f:I[1959,[],"ClientPageRoot"]
 18:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 14:null
 1c:I[622,[],"IconMark"]
-16:{"metadata":[["$","title","0",{"children":"Poti.ge"}],["$","meta","1",{"name":"description","content":"City Directory for Poti"}],["$","link","2",{"rel":"manifest","href":"/manifest.json","crossOrigin":"$undefined"}],["$","meta","3",{"name":"mobile-web-app-capable","content":"yes"}],["$","meta","4",{"name":"apple-mobile-web-app-title","content":"Poti.ge"}],["$","meta","5",{"name":"apple-mobile-web-app-status-bar-style","content":"default"}],["$","link","6",{"rel":"icon","href":"/fav.png"}],["$","link","7",{"rel":"apple-touch-icon","href":"/fav.png"}],["$","$L1c","8",{}]],"error":null,"digest":"$undefined"}
+16:{"metadata":[["$","title","0",{"children":"Poti.ge - ციფრული სერვისების პანელი"}],["$","meta","1",{"name":"description","content":"City Directory for Poti"}],["$","link","2",{"rel":"manifest","href":"/manifest.json","crossOrigin":"$undefined"}],["$","meta","3",{"name":"mobile-web-app-capable","content":"yes"}],["$","meta","4",{"name":"apple-mobile-web-app-title","content":"Poti.ge - ციფრული სერვისების პანელი"}],["$","meta","5",{"name":"apple-mobile-web-app-status-bar-style","content":"default"}],["$","link","6",{"rel":"icon","href":"/icon.png"}],["$","link","7",{"rel":"apple-touch-icon","href":"/icon.png"}],["$","$L1c","8",{}]],"error":null,"digest":"$undefined"}
 1b:"$16:metadata"
