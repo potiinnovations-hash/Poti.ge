@@ -46,7 +46,7 @@ export default function SEOManager({
       : (settings.seoKeywordsEn || ''));
 
     // 4. Determine OG Image
-    const shareImage = pageImage || settings.seoShareImageUrl || settings.logoUrl || '';
+    const shareImage = pageImage || settings.seoShareImageUrl || '/logo.png';
 
     // 5. Verification Code
     const verification = settings.googleSearchVerification || '';

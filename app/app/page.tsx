@@ -66,13 +66,7 @@ export default function AppPage() {
       styleEl.textContent = content;
     }
     
-    const activeFont = settings?.primaryFont || settings?.fontFamily;
-    if (activeFont) {
-      const formattedFont = activeFont.includes(' ') && !activeFont.startsWith("'") && !activeFont.startsWith('"')
-        ? `'${activeFont}'`
-        : activeFont;
-      document.body.style.setProperty('font-family', `${formattedFont}, 'BPG Glaho Web Caps', 'Inter', sans-serif`, 'important');
-    }
+    document.body.style.setProperty('font-family', "'BPG Glaho Web Caps', sans-serif", 'important');
   }, [settings]);
 
   useEffect(() => {

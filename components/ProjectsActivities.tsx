@@ -149,13 +149,24 @@ export const ProjectsActivities = ({ lang }: ProjectsActivitiesProps) => {
   ];
 
   // If we have custom categories in DB, map them nicely
-  const tabFilters = categories.length > 0 
+  const rawTabFilters = categories.length > 0 
     ? [{ id: 'all', tag: 'all', titleKa: 'ყველა', titleEn: 'All' }, ...categories].map(cat => ({
         key: cat.tag || cat.id,
         ka: cat.titleKa,
         en: cat.titleEn
       }))
     : defaultMockCategories;
+
+  // Filter out any duplicate category tabs (e.g., if duplicate custom/default tags exist)
+  const seenKeys = new Set<string>();
+  const tabFilters = rawTabFilters.filter(tab => {
+    const finalKey = tab.key || '';
+    if (!finalKey || seenKeys.has(finalKey)) {
+      return false;
+    }
+    seenKeys.add(finalKey);
+    return true;
+  });
 
   // Render items based on active tab filtering
   const filteredItems = activeTab === 'all'

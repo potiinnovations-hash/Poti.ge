@@ -689,24 +689,19 @@ export default function AdminPage() {
       {/* Sidebar */}
       <aside className="w-72 bg-white border-r border-slate-200 flex flex-col p-8 fixed inset-y-0 shadow-sm z-50">
         <Link href="/" className="flex items-center gap-1 mb-16 group">
-          {globalSettings.logoUrl ? (
-            <div className="relative h-10 w-32">
-              <Image 
-                src={globalSettings.logoUrl} 
-                alt="Logo" 
-                fill 
-                className="object-contain object-left transition-transform group-hover:scale-105" 
-                referrerPolicy="no-referrer"
-              />
-            </div>
-          ) : (
-            <span className="text-2xl font-black text-blue-900 tracking-tighter transition-transform group-hover:scale-105">
-              POTI<span className="text-blue-500">.ADMIN</span>
-            </span>
-          )}
+          <div className="relative h-10 w-32">
+            <Image 
+              src="/logo.png" 
+              alt="Logo" 
+              fill 
+              className="object-contain object-left transition-transform group-hover:scale-105" 
+              referrerPolicy="no-referrer"
+              priority
+            />
+          </div>
         </Link>
 
-        <nav className="flex-1 space-y-3">
+        <nav className="flex-1 space-y-3 overflow-y-auto pr-1 pb-6 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200/80 dark:[&::-webkit-scrollbar-thumb]:bg-slate-800 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-300 dark:hover:[&::-webkit-scrollbar-thumb]:bg-slate-700">
           <motion.button 
             whileTap={{ scale: 0.98 }}
             onClick={() => setActiveTab('catalog')}

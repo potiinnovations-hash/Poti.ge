@@ -237,11 +237,30 @@ export const CatalogTab = ({
                               />
                             </div>
                             <div className="space-y-2">
-                              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">აღწერა (KA)</label>
+                              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">მოკლე აღწერა (KA)</label>
                               <textarea 
-                                className="w-full bg-white border-none p-4 rounded-2xl text-sm font-medium text-slate-700 h-32 resize-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+                                className="w-full bg-white border-none p-4 rounded-2xl text-sm font-medium text-slate-700 h-24 resize-none focus:ring-2 focus:ring-blue-500 shadow-sm"
                                 value={item.descriptionKa || ''}
                                 onChange={(e) => handleUpdateCatalogItem(item.id, { descriptionKa: e.target.value })}
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <div className="flex justify-between items-center px-1">
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">სრული აღწერა (KA)</label>
+                                <button 
+                                  type="button"
+                                  onClick={() => handleTranslate(item.id, item.fullDescriptionKa || '', 'fullDescriptionEn')}
+                                  disabled={translatingId === item.id}
+                                  className="text-[10px] text-blue-600 font-bold hover:underline disabled:opacity-50 flex items-center gap-1 cursor-pointer"
+                                >
+                                  {translatingId === item.id ? 'ითარგმნება...' : '🇬🇧 თარგმნე EN-ზე'}
+                                </button>
+                              </div>
+                              <textarea 
+                                className="w-full bg-white border-none p-4 rounded-2xl text-sm font-medium text-slate-700 h-48 resize-y focus:ring-2 focus:ring-blue-500 shadow-sm"
+                                value={item.fullDescriptionKa || ''}
+                                onChange={(e) => handleUpdateCatalogItem(item.id, { fullDescriptionKa: e.target.value })}
+                                placeholder="დაამატეთ ვრცელი აღწერილობა აქ (გამოჩნდება ფართედ ქვევით)..."
                               />
                             </div>
                           </div>
@@ -516,15 +535,30 @@ export const CatalogTab = ({
                             />
                           </div>
 
-                          <div className="space-y-3">
+                           <div className="space-y-3">
                             <div className="flex justify-between items-end px-2">
-                              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">აღწერა (EN)</label>
+                              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">მოკლე აღწერა / Short Description (EN)</label>
                             </div>
                             <textarea 
-                              className="w-full bg-white border-none p-6 rounded-3xl text-slate-700 font-medium h-48 resize-none focus:ring-2 focus:ring-blue-500 shadow-sm leading-relaxed"
+                              className="w-full bg-white border-none p-6 rounded-3xl text-slate-700 font-medium h-24 resize-none focus:ring-2 focus:ring-blue-500 shadow-sm leading-relaxed"
                               value={item.descriptionEn || ''}
                               onChange={(e) => handleUpdateCatalogItem(item.id, { descriptionEn: e.target.value })}
-                              placeholder="Full description in English..."
+                              placeholder="Brief description in English..."
+                            />
+                          </div>
+
+                          <div className="space-y-3">
+                            <div className="flex justify-between items-end px-2">
+                              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">სრული აღწერა / Full Description (EN)</label>
+                              {item.fullDescriptionKa && (
+                                <span className="text-[10px] text-slate-300 font-bold italic truncate max-w-xs block">Original KA: {item.fullDescriptionKa.substring(0, 30)}...</span>
+                              )}
+                            </div>
+                            <textarea 
+                              className="w-full bg-white border-none p-6 rounded-3xl text-slate-700 font-medium h-48 resize-y focus:ring-2 focus:ring-blue-500 shadow-sm leading-relaxed"
+                              value={item.fullDescriptionEn || ''}
+                              onChange={(e) => handleUpdateCatalogItem(item.id, { fullDescriptionEn: e.target.value })}
+                              placeholder="Extensive description in English (appears in 100% width on detail page)..."
                             />
                           </div>
                         </div>

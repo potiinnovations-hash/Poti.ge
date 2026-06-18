@@ -11,17 +11,17 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Poti.ge",
+  title: "Poti.ge - ციფრული სერვისების პანელი",
   description: "City Directory for Poti",
   manifest: "/manifest.json",
   appleWebApp: {
-    title: "Poti.ge",
+    title: "Poti.ge - ციფრული სერვისების პანელი",
     statusBarStyle: "default",
     capable: true,
   },
   icons: {
-    icon: "/fav.png",
-    apple: "/fav.png",
+    icon: "/icon.png",
+    apple: "/icon.png",
   },
 };
 

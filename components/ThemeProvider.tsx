@@ -21,13 +21,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
           document.documentElement.style.setProperty('--secondary-color', data.secondaryColor);
         }
 
-        // Apply fonts
-        if (data.primaryFont) {
-          document.documentElement.style.setProperty('--font-primary', data.primaryFont);
-        }
-        if (data.secondaryFont) {
-          document.documentElement.style.setProperty('--font-secondary', data.secondaryFont);
-        }
+        // Apply fonts (Hardcoded to BPG Glaho Web Caps)
+        document.documentElement.style.setProperty('--font-primary', "'BPG Glaho Web Caps', sans-serif");
+        document.documentElement.style.setProperty('--font-secondary', "'BPG Glaho Web Caps', sans-serif");
 
         // Handle custom fonts upload
         const customFonts = data.customFonts || [];
