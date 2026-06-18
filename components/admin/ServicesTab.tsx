@@ -152,15 +152,6 @@ export const ServicesTab = ({
                     <div>
                       <label className="block text-[11px] font-black uppercase tracking-widest text-slate-400 mb-2 flex items-center justify-between">
                         <span>🌍 Street Names / Affected Area (English)</span>
-                        <button
-                          type="button"
-                          onClick={() => handleTranslate(outage.id, outage.disconnectionAreaKa, 'disconnectionAreaEn')}
-                          disabled={translatingId === outage.id || !outage.disconnectionAreaKa}
-                          className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-orange-50 hover:bg-orange-100 text-orange-600 border border-orange-100 font-bold text-[9px] uppercase tracking-wider transition-all disabled:opacity-40 cursor-pointer"
-                        >
-                          <Sparkles size={10} />
-                          {translatingId === outage.id ? 'თარგმნა...' : 'ავტო-თარგმნა'}
-                        </button>
                       </label>
                       <textarea
                         rows={2}
@@ -188,15 +179,6 @@ export const ServicesTab = ({
                     <div>
                       <label className="block text-[11px] font-black uppercase tracking-widest text-slate-400 mb-2 flex items-center justify-between">
                         <span>🌍 Reason / Maintenance Details (English)</span>
-                        <button
-                          type="button"
-                          onClick={() => handleTranslate(outage.id, outage.reasonKa, 'reasonEn')}
-                          disabled={translatingId === outage.id || !outage.reasonKa}
-                          className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-orange-50 hover:bg-orange-100 text-orange-600 border border-orange-100 font-bold text-[9px] uppercase tracking-wider transition-all disabled:opacity-40 cursor-pointer"
-                        >
-                          <Sparkles size={10} />
-                          {translatingId === outage.id ? 'თარგმნა...' : 'ავტო-თარგმნა'}
-                        </button>
                       </label>
                       <input
                         type="text"

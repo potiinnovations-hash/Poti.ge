@@ -208,13 +208,6 @@ export const NewsTab = ({
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
                             <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">სათაური (EN)</label>
-                            <button 
-                              onClick={() => handleTranslate(item.id, item.titleKa, 'titleEn', 'news')}
-                              disabled={translatingId === item.id}
-                              className="text-[10px] font-black text-blue-600 flex items-center gap-1 hover:underline disabled:opacity-50"
-                            >
-                              <Sparkles size={12} /> AI თარგმნა
-                            </button>
                           </div>
                           <input 
                             className="w-full bg-slate-50 border-none p-3 rounded-xl font-bold text-slate-900 shadow-inner"
@@ -225,13 +218,6 @@ export const NewsTab = ({
                         <div className="space-y-2">
                           <div className="flex justify-between items-center">
                             <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">შინაარსი (EN)</label>
-                            <button 
-                              onClick={() => handleTranslate(item.id, item.contentKa, 'contentEn', 'news')}
-                              disabled={translatingId === item.id}
-                              className="text-[10px] font-black text-blue-600 flex items-center gap-1 hover:underline disabled:opacity-50"
-                            >
-                              <Sparkles size={12} /> AI თარგმნა
-                            </button>
                           </div>
                           <textarea 
                             className="w-full bg-slate-50 border-none p-3 rounded-xl font-medium text-slate-700 h-32 resize-none shadow-sm"

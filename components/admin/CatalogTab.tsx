@@ -472,27 +472,6 @@ export const CatalogTab = ({
                     ) : (
                       /* ENGLISH EDIT MODE */
                       <div className="space-y-12 max-w-3xl mx-auto">
-                        <div className="bg-blue-50 p-8 rounded-[2.5rem] flex items-center justify-between shadow-inner">
-                          <div>
-                            <h4 className="text-2xl font-black text-blue-900 mb-1">თარგმანი</h4>
-                            <p className="text-blue-600/60 font-bold">გამოიყენეთ AI ავტომატური თარგმანისთვის</p>
-                          </div>
-                          <div className="flex gap-4">
-                             <button 
-                              onClick={() => {
-                                handleTranslate(item.id, item.titleKa, 'titleEn');
-                                handleTranslate(item.id, item.descriptionKa, 'descriptionEn');
-                                if (item.addressKa) handleTranslate(item.id, item.addressKa, 'addressEn');
-                                if (item.price) handleTranslate(item.id, item.price, 'priceEn');
-                              }}
-                              disabled={translatingId === item.id}
-                              className="flex items-center gap-3 px-8 py-4 bg-blue-600 text-white rounded-2xl font-black hover:bg-blue-700 transition-all shadow-xl shadow-blue-100 disabled:opacity-50"
-                            >
-                              <Sparkles size={20} /> AI თარგმნა (ყველა)
-                            </button>
-                          </div>
-                        </div>
-
                         <div className="space-y-8">
                           <div className="space-y-3">
                             <div className="flex justify-between items-end px-2">
@@ -512,7 +491,6 @@ export const CatalogTab = ({
                               <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">მისამართი (EN)</label>
                               <div className="flex items-center gap-2">
                                 <span className="text-[10px] text-slate-300 font-bold italic">Original: {item.addressKa}</span>
-                                <span className="text-[10px] font-black text-blue-600 hover:underline cursor-pointer" onClick={() => handleTranslate(item.id, item.addressKa, 'addressEn')}>AI Translate</span>
                               </div>
                             </div>
                             <input 
@@ -528,7 +506,6 @@ export const CatalogTab = ({
                               <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">პრაისი / ტარიფი (EN)</label>
                               <div className="flex items-center gap-2">
                                <span className="text-[10px] text-slate-300 font-bold italic">Original: {item.price}</span>
-                               <span className="text-[10px] font-black text-blue-600 hover:underline cursor-pointer" onClick={() => handleTranslate(item.id, item.price, 'priceEn')}>AI Translate</span>
                               </div>
                             </div>
                             <input 
@@ -542,7 +519,6 @@ export const CatalogTab = ({
                           <div className="space-y-3">
                             <div className="flex justify-between items-end px-2">
                               <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">აღწერა (EN)</label>
-                              <span className="text-[10px] font-black text-blue-600 hover:underline cursor-pointer" onClick={() => handleTranslate(item.id, item.descriptionKa, 'descriptionEn')}>AI Translate</span>
                             </div>
                             <textarea 
                               className="w-full bg-white border-none p-6 rounded-3xl text-slate-700 font-medium h-48 resize-none focus:ring-2 focus:ring-blue-500 shadow-sm leading-relaxed"

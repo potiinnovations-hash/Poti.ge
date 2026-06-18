@@ -25,6 +25,7 @@ import { ServicesTab } from '@/components/admin/ServicesTab';
 import { PWATab } from '@/components/admin/PWATab';
 import { InitiativesTab } from '@/components/admin/InitiativesTab';
 import { InitiativeCategoriesTab } from '@/components/admin/InitiativeCategoriesTab';
+import PlansTab from '@/components/admin/PlansTab';
 
 const iconMap: Record<string, any> = {
   Calendar,
@@ -104,7 +105,7 @@ export default function AdminPage() {
   const [catalogItems, setCatalogItems] = useState<any[]>([]);
   const [globalSettings, setGlobalSettings] = useState<any>({});
   const [notifications, setNotifications] = useState<any[]>([]);
-  const [activeTab, setActiveTab ] = useState<'catalog' | 'categories' | 'settings' | 'notifications' | 'news' | 'calendar' | 'services' | 'pwa' | 'initiatives' | 'initiative_categories'>('catalog');
+  const [activeTab, setActiveTab ] = useState<'catalog' | 'categories' | 'settings' | 'notifications' | 'news' | 'calendar' | 'services' | 'pwa' | 'initiatives' | 'initiative_categories' | 'plans'>('catalog');
   const [translatingId, setTranslatingId] = useState<string | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editMode, setEditMode] = useState<'KA' | 'EN'>('KA');
@@ -114,6 +115,7 @@ export default function AdminPage() {
   const [outages, setOutages] = useState<any[]>([]);
   const [initiatives, setInitiatives] = useState<any[]>([]);
   const [initiativeCategories, setInitiativeCategories] = useState<any[]>([]);
+  const [plans, setPlans] = useState<any[]>([]);
 
   // Local effect to preview fonts in admin immediately
   useEffect(() => {
@@ -263,6 +265,14 @@ export default function AdminPage() {
       handleFirestoreError(err, OperationType.LIST, 'initiative_categories');
     });
 
+    const unsubscribePlans = onSnapshot(query(collection(db, 'plans'), orderBy('order', 'asc')), (snap) => {
+      setPlans(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+      setLoading(false);
+    }, (err) => {
+      setLoading(false);
+      handleFirestoreError(err, OperationType.LIST, 'plans');
+    });
+
     return () => {
       unsubscribeCatalog();
       unsubscribeSettings();
@@ -272,6 +282,7 @@ export default function AdminPage() {
       unsubscribeOutages();
       unsubscribeInitiatives();
       unsubscribeInitCats();
+      unsubscribePlans();
     };
   }, [isAdmin]);
 
@@ -766,6 +777,13 @@ export default function AdminPage() {
           >
             <Smartphone size={22} /> PWA მენიუ
           </motion.button>
+          <motion.button 
+            whileTap={{ scale: 0.98 }}
+            onClick={() => setActiveTab('plans')}
+            className={`w-full flex items-center gap-4 px-5 py-4 rounded-3xl font-black transition-all ${activeTab === 'plans' ? 'bg-blue-600 text-white shadow-xl shadow-blue-100 scale-[1.02]' : 'text-slate-500 hover:bg-slate-50'}`}
+          >
+            <Globe size={22} /> სხვა საიტები
+          </motion.button>
         </nav>
 
         <motion.button 
@@ -934,6 +952,16 @@ export default function AdminPage() {
 
           {activeTab === 'pwa' && (
             <PWATab />
+          )}
+
+          {activeTab === 'plans' && (
+            <PlansTab 
+              plans={plans}
+              editingId={editingId}
+              setEditingId={setEditingId}
+              confirmDeleteId={confirmDeleteId}
+              setConfirmDeleteId={setConfirmDeleteId}
+            />
           )}
         </div>
       </main>

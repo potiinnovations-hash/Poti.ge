@@ -275,21 +275,7 @@ export const CategoriesTab = ({
                             />
                           </div>
 
-                          <div className="bg-blue-50 rounded-3xl p-6 border border-blue-100 flex items-start gap-4">
-                            <Sparkles className="text-blue-600 mt-1 flex-shrink-0 animate-pulse" size={20} />
-                            <div className="space-y-2 flex-1">
-                              <h4 className="font-black text-blue-900 text-sm">ავტომატური თარგმანი</h4>
-                              <p className="text-xs text-blue-700 font-bold leading-relaxed">დაზოგეთ დრო და თარგმნეთ სათაური და აღწერა ავტომატურად ინგლისურ ენაზე ხელოვნური ინტელექტის დახმარებით.</p>
-                              <button 
-                                type="button"
-                                disabled={translatingId !== null || !cat.titleKa}
-                                onClick={() => handleTranslate(cat.id, cat.titleKa, 'titleEn')}
-                                className="mt-2 inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl font-bold text-xs hover:bg-blue-700 transition-all disabled:opacity-50 cursor-pointer shadow-sm shadow-blue-200"
-                              >
-                                {translatingId === cat.id ? 'ითარგმნება...' : 'ავტომატური თარგმანი 🪄'}
-                              </button>
-                            </div>
-                          </div>
+                          {/* AI translation removed */}
                         </div>
                       </div>
                     ) : (

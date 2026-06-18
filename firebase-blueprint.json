@@ -146,6 +146,25 @@
         "createdAt": { "type": "string" }
       }
     },
+    "plans": {
+      "title": "Ecosystem Plan Item",
+      "description": "Custom site block on the plans page",
+      "type": "object",
+      "properties": {
+        "domain": { "type": "string" },
+        "icon": { "type": "string" },
+        "titleKa": { "type": "string" },
+        "titleEn": { "type": "string" },
+        "descKa": { "type": "string" },
+        "descEn": { "type": "string" },
+        "color": { "type": "string" },
+        "tagKa": { "type": "string" },
+        "tagEn": { "type": "string" },
+        "isReady": { "type": "boolean" },
+        "link": { "type": "string" },
+        "order": { "type": "integer" }
+      }
+    },
     "initiative_categories": {
       "title": "Initiative Category",
       "description": "Category for Projects & Activities",
@@ -167,6 +186,7 @@
     "news": { "schema": "news", "description": "News items" },
     "outages": { "schema": "outages", "description": "Municipal service outages" },
     "initiatives": { "schema": "initiatives", "description": "Projects & Activities items" },
+    "plans": { "schema": "plans", "description": "Digital Ecosystem site blocks" },
     "initiative_categories": { "schema": "initiative_categories", "description": "Categories of Projects & Activities" }
   }
 }

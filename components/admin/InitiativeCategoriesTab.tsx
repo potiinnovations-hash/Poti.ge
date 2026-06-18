@@ -212,13 +212,6 @@ export const InitiativeCategoriesTab = ({
                       <div className="space-y-2">
                         <div className="flex justify-between items-center">
                           <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">CATEGORY NAME (EN)</label>
-                          <button 
-                            onClick={() => handleTranslate(item.id, item.titleKa, 'titleEn', 'initiative_categories')}
-                            disabled={translatingId === item.id || !item.titleKa}
-                            className="text-[10px] font-black text-blue-600 flex items-center gap-1 hover:underline disabled:opacity-40"
-                          >
-                            <Sparkles size={11} /> AI თარგმნა
-                          </button>
                         </div>
                         <input 
                           className="w-full bg-slate-50 border-none p-4 rounded-2xl text-md font-bold text-slate-900 shadow-inner"

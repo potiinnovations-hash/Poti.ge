@@ -401,13 +401,6 @@ export const InitiativesTab = ({
                             <div className="space-y-1">
                               <div className="flex justify-between items-center">
                                 <label className="text-[10px] font-bold text-slate-400 uppercase">TITLE (EN)</label>
-                                <button 
-                                  onClick={() => handleTranslate(item.id, item.ctaTextKa, 'ctaTextEn', 'initiatives')}
-                                  disabled={translatingId === item.id}
-                                  className="text-[9px] font-black text-blue-600 hover:underline disabled:opacity-40"
-                                >
-                                  AI თარგმნა
-                                </button>
                               </div>
                               <input 
                                 className="w-full bg-white border-none p-3 rounded-xl font-bold text-slate-800 text-xs shadow-sm"
@@ -457,13 +450,6 @@ export const InitiativesTab = ({
                           <div className="space-y-1">
                             <div className="flex justify-between items-center">
                               <label className="text-[10px] font-bold text-slate-400 uppercase">TITLE (EN)</label>
-                              <button 
-                                onClick={() => handleTranslate(item.id, item.titleKa, 'titleEn', 'initiatives')}
-                                disabled={translatingId === item.id || !item.titleKa}
-                                className="text-[10px] font-black text-blue-600 flex items-center gap-1 hover:underline disabled:opacity-40"
-                              >
-                                <Sparkles size={11} /> AI თარგმნა
-                              </button>
                             </div>
                             <input 
                               className="w-full bg-slate-50 border-none p-3 rounded-xl font-bold text-slate-800 text-sm shadow-inner"
@@ -477,13 +463,6 @@ export const InitiativesTab = ({
                           <div className="space-y-1">
                             <div className="flex justify-between items-center">
                               <label className="text-[10px] font-bold text-slate-400 uppercase">SHORT DESC (EN)</label>
-                              <button 
-                                onClick={() => handleTranslate(item.id, item.descKa, 'descEn', 'initiatives')}
-                                disabled={translatingId === item.id || !item.descKa}
-                                className="text-[10px] font-black text-blue-600 flex items-center gap-1 hover:underline disabled:opacity-40"
-                              >
-                                <Sparkles size={11} /> AI თარგმნა
-                              </button>
                             </div>
                             <textarea 
                               className="w-full bg-slate-50 border-none p-3 rounded-xl font-semibold text-slate-700 text-xs h-20 resize-none shadow-inner"
@@ -497,13 +476,6 @@ export const InitiativesTab = ({
                           <div className="space-y-1">
                             <div className="flex justify-between items-center">
                               <label className="text-[10px] font-bold text-slate-400 uppercase">FULL DETAILS (EN)</label>
-                              <button 
-                                onClick={() => handleTranslate(item.id, item.fullDetailsKa, 'fullDetailsEn', 'initiatives')}
-                                disabled={translatingId === item.id || !item.fullDetailsKa}
-                                className="text-[10px] font-black text-blue-600 flex items-center gap-1 hover:underline disabled:opacity-40"
-                              >
-                                <Sparkles size={11} /> AI თარგმნა
-                              </button>
                             </div>
                             <textarea 
                               className="w-full bg-slate-50 border-none p-3 rounded-xl font-medium text-slate-700 text-xs h-32 resize-none shadow-inner"
