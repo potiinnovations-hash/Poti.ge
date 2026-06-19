@@ -1,7 +1,7 @@
 1:"$Sreact.fragment"
 7:I[7150,[],""]
 :HL["/_next/static/media/e4af272ccee01ff0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/_next/static/css/330bb6206c3eb916.css","style"]
+:HL["/_next/static/css/053f24cb4ff045f1.css","style"]
 2:Tdff,
               (function() {
                 if (typeof window !== 'undefined' && !window.__JSON_STRINGIFY_PATCHED__) {
@@ -71,7 +71,7 @@
                   navigator.serviceWorker.register('/sw.js');
                 });
               }
-            0:{"P":null,"b":"shhowM097FkQPpwNeCuR3","p":"","c":["","news"],"i":false,"f":[[["",{"children":["news",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/330bb6206c3eb916.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"ka","children":["$","body",null,{"className":"antialiased","children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3"]}]}]]}],{"children":["news","$L4",{"children":["__PAGE__","$L5",{},null,false]},null,false]},null,false],"$L6",false]],"m":"$undefined","G":["$7",[]],"s":false,"S":true}
+            0:{"P":null,"b":"qbkogUqFIhQgM4B-p_6Tm","p":"","c":["","news"],"i":false,"f":[[["",{"children":["news",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/053f24cb4ff045f1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"ka","children":["$","body",null,{"className":"antialiased","children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3"]}]}]]}],{"children":["news","$L4",{"children":["__PAGE__","$L5",{},null,false]},null,false]},null,false],"$L6",false]],"m":"$undefined","G":["$7",[]],"s":false,"S":true}
 8:I[6174,["992","static/chunks/bc9e92e6-b5a02c420046d4a4.js","811","static/chunks/ae6eea6a-989a34551986aacb.js","986","static/chunks/986-bc82cbf940c33b06.js","248","static/chunks/248-6cdd8dd31e925fc2.js","177","static/chunks/app/layout-615aab6e3307572c.js"],"ThemeProvider"]
 9:I[9766,[],""]
 a:I[3194,["986","static/chunks/986-bc82cbf940c33b06.js","39","static/chunks/app/error-261e70df31876685.js"],"default"]
