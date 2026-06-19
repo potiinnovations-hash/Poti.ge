@@ -517,6 +517,26 @@ function ItemDetailContent() {
                 )}
               </div>
             </div>
+
+            {/* Full Description Section */}
+            {(lang === 'ka' ? item.fullDescriptionKa : item.fullDescriptionEn) && (
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="mt-16 pt-12 border-t border-slate-100 dark:border-slate-900"
+              >
+                <h2 className="text-3xl font-black mb-6" style={{ color: item.titleColor || settings.titleColor || '#f59e0b' }}>
+                  {lang === 'ka' ? 'სრული აღწერა' : 'Full Description'}
+                </h2>
+                <div 
+                  className="bg-slate-50/50 dark:bg-slate-900/30 rounded-[2.5rem] p-8 md:p-12 border border-slate-100/80 dark:border-slate-800/50 shadow-sm text-lg leading-relaxed font-medium whitespace-pre-line text-slate-700 dark:text-slate-300"
+                >
+                  {lang === 'ka' ? item.fullDescriptionKa : item.fullDescriptionEn}
+                </div>
+              </motion.div>
+            )}
+
           </div>
         </motion.main>
       )}

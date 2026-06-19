@@ -244,6 +244,15 @@ export const CatalogTab = ({
                                 onChange={(e) => handleUpdateCatalogItem(item.id, { descriptionKa: e.target.value })}
                               />
                             </div>
+                            <div className="space-y-2">
+                              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">სრული აღწერა (KA)</label>
+                              <textarea 
+                                className="w-full bg-white border-none p-4 rounded-2xl text-sm font-medium text-slate-700 h-48 resize-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+                                value={item.fullDescriptionKa || ''}
+                                onChange={(e) => handleUpdateCatalogItem(item.id, { fullDescriptionKa: e.target.value })}
+                                placeholder="დაწერეთ სრული აღწერა..."
+                              />
+                            </div>
                           </div>
                         </div>
 
@@ -524,6 +533,18 @@ export const CatalogTab = ({
                               className="w-full bg-white border-none p-6 rounded-3xl text-slate-700 font-medium h-48 resize-none focus:ring-2 focus:ring-blue-500 shadow-sm leading-relaxed"
                               value={item.descriptionEn || ''}
                               onChange={(e) => handleUpdateCatalogItem(item.id, { descriptionEn: e.target.value })}
+                              placeholder="Description in English..."
+                            />
+                          </div>
+
+                          <div className="space-y-3">
+                            <div className="flex justify-between items-end px-2">
+                              <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">სრული აღწერა (EN)</label>
+                            </div>
+                            <textarea 
+                              className="w-full bg-white border-none p-6 rounded-3xl text-slate-700 font-medium h-48 resize-none focus:ring-2 focus:ring-blue-500 shadow-sm leading-relaxed"
+                              value={item.fullDescriptionEn || ''}
+                              onChange={(e) => handleUpdateCatalogItem(item.id, { fullDescriptionEn: e.target.value })}
                               placeholder="Full description in English..."
                             />
                           </div>

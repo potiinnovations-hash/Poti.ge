@@ -16,6 +16,8 @@ export interface CatalogItem {
   targetUrl: string;
   descriptionKa?: string;
   descriptionEn?: string;
+  fullDescriptionKa?: string;
+  fullDescriptionEn?: string;
   order?: number;
   isUnderDevelopment?: boolean;
   redirectDirectly?: boolean;
