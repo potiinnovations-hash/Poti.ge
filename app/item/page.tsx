@@ -499,16 +499,12 @@ function ItemDetailContent() {
                              <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mb-2">
                                {lang === 'ka' ? newsItem.contentKa : newsItem.contentEn}
                              </p>
-                             {newsItem.sourceUrl && (
-                               <a 
-                                href={newsItem.sourceUrl} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 text-[10px] font-black text-blue-600 uppercase"
-                               >
-                                 {lang === 'ka' ? 'სრულად' : 'Read Full'} <ExternalLink size={10} />
-                               </a>
-                             )}
+                             <Link 
+                               href={`/news?id=${newsItem.id}`}
+                               className="inline-flex items-center gap-1 text-[10px] font-black text-blue-600 uppercase"
+                             >
+                               {lang === 'ka' ? 'სრულად' : 'Read Full'} <ArrowRight size={10} />
+                             </Link>
                           </div>
                         </div>
                       ))}

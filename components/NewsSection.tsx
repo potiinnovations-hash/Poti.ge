@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { ExternalLink, Calendar, ArrowRight, Bell } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface NewsItem {
   id: string;
@@ -27,6 +28,7 @@ interface NewsSectionProps {
 export default function NewsSection({ lang }: NewsSectionProps) {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const q = query(collection(db, 'news'), orderBy('createdAt', 'desc'), limit(3));
@@ -85,18 +87,18 @@ export default function NewsSection({ lang }: NewsSectionProps) {
             key={item.id}
             whileTap={{ scale: 0.995 }}
             onClick={() => {
-              if (item.sourceUrl) window.open(item.sourceUrl, '_blank');
+              router.push(`/news?id=${item.id}`);
             }}
-            className={`group bg-white dark:bg-slate-900 rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all border border-blue-50 dark:border-slate-800 flex flex-col justify-between ${item.sourceUrl ? 'cursor-pointer' : ''}`}
+            className="group bg-white dark:bg-slate-900 rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all border border-blue-50 dark:border-slate-800 flex flex-col justify-between cursor-pointer"
           >
             <div>
               <div className="relative aspect-video overflow-hidden">
                 <Image 
-                  src={item.imageUrl} 
-                  alt={lang === 'ka' ? item.titleKa : item.titleEn} 
-                  fill 
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  referrerPolicy="no-referrer"
+                   src={item.imageUrl} 
+                   alt={lang === 'ka' ? item.titleKa : item.titleEn} 
+                   fill 
+                   className="object-cover transition-transform duration-700 group-hover:scale-110"
+                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute top-4 left-4">
                   <div className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest text-blue-600 dark:text-blue-400 flex items-center gap-2">
@@ -117,22 +119,16 @@ export default function NewsSection({ lang }: NewsSectionProps) {
             
             <div className="px-8 pb-8">
               <div className="flex items-center justify-between pt-6 border-t border-slate-100 dark:border-slate-800">
-                {item.sourceUrl ? (
-                  <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open(item.sourceUrl, '_blank');
-                    }}
-                    className="flex items-center gap-2 text-sm font-black text-blue-600 dark:text-blue-400 hover:gap-3 transition-all bg-transparent border-none p-0 cursor-pointer"
-                  >
-                    {lang === 'ka' ? 'სრულად ნახვა' : 'Read Full'}
-                    <ExternalLink size={16} />
-                  </button>
-                ) : (
-                  <div className="text-sm font-black text-slate-300 dark:text-slate-700">
-                    {lang === 'ka' ? 'დეტალები არ არის' : 'No details'}
-                  </div>
-                )}
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    router.push(`/news?id=${item.id}`);
+                  }}
+                  className="flex items-center gap-2 text-sm font-black text-blue-600 dark:text-blue-400 hover:gap-3 transition-all bg-transparent border-none p-0 cursor-pointer"
+                >
+                  {lang === 'ka' ? 'სრულად ნახვა' : 'Read Full'}
+                  <ArrowRight size={16} />
+                </button>
                 {item.relatedItemId && (
                   <Link 
                     href={`/item?id=${item.relatedItemId}`}

@@ -6,7 +6,7 @@ import { db, handleFirestoreError, OperationType } from '@/firebase';
 import { Header } from '@/components/Header';
 import Footer from '@/components/Footer';
 import LoadingScreen from '@/components/LoadingScreen';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { ExternalLink, Calendar, ArrowRight, Bell } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -22,7 +22,29 @@ function NewsContent() {
   const [settingsLoaded, setSettingsLoaded] = useState(false);
   const [fullPageLoading, setFullPageLoading] = useState(true);
   const searchParams = useSearchParams();
+  const router = useRouter();
   const relatedId = searchParams.get('related');
+  const selectedId = searchParams.get('id');
+  const [selectedItem, setSelectedItem] = useState<any>(null);
+
+  useEffect(() => {
+    if (!selectedId) {
+      setSelectedItem(null);
+      return;
+    }
+    const found = news.find(n => n.id === selectedId);
+    if (found) {
+      setSelectedItem(found);
+    } else {
+      const docRef = doc(db, 'news', selectedId);
+      const unsubscribeSingle = onSnapshot(docRef, (snap) => {
+        if (snap.exists()) {
+          setSelectedItem({ id: snap.id, ...snap.data() });
+        }
+      });
+      return () => unsubscribeSingle();
+    }
+  }, [selectedId, news]);
 
   useEffect(() => {
     // Initial loading delay
@@ -158,9 +180,9 @@ function NewsContent() {
                   id={item.id}
                   whileTap={{ scale: 0.995 }}
                   onClick={() => {
-                    if (item.sourceUrl) window.open(item.sourceUrl, '_blank');
+                    router.push(`/news?id=${item.id}`, { scroll: false });
                   }}
-                  className={`group bg-white dark:bg-slate-900 rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all border border-blue-50 dark:border-slate-800 ${item.sourceUrl ? 'cursor-pointer' : ''} scroll-mt-24`}
+                  className="group bg-white dark:bg-slate-900 rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all border border-blue-50 dark:border-slate-800 cursor-pointer scroll-mt-24"
                 >
                   <div className="relative aspect-video overflow-hidden">
                     <Image 
@@ -178,31 +200,27 @@ function NewsContent() {
                     </div>
                   </div>
                   <div className="p-8">
-                    <h2 className="text-2xl font-black mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <h2 className="text-2xl font-black mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
                       {lang === 'ka' ? item.titleKa : item.titleEn}
                     </h2>
                     <p className="text-slate-500 dark:text-slate-400 font-medium line-clamp-3 mb-8 leading-relaxed">
                       {lang === 'ka' ? item.contentKa : item.contentEn}
                     </p>
                     <div className="flex items-center justify-between pt-6 border-t border-slate-100 dark:border-slate-800">
-                      {item.sourceUrl ? (
-                        <a 
-                          href={item.sourceUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-sm font-black text-blue-600 dark:text-blue-400 hover:gap-3 transition-all"
-                        >
-                          {lang === 'ka' ? 'სრულად ნახვა' : 'Read Full'}
-                          <ExternalLink size={16} />
-                        </a>
-                      ) : (
-                         <div className="text-sm font-black text-slate-300">
-                           {lang === 'ka' ? 'დეტალები არ არის' : 'No details'}
-                         </div>
-                      )}
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          router.push(`/news?id=${item.id}`, { scroll: false });
+                        }}
+                        className="flex items-center gap-2 text-sm font-black text-blue-600 dark:text-blue-400 hover:gap-3 transition-all bg-transparent border-none p-0 cursor-pointer"
+                      >
+                        {lang === 'ka' ? 'სრულად ნახვა' : 'Read Full'}
+                        <ArrowRight size={16} />
+                      </button>
                       {item.relatedItemId && (
                         <Link 
                           href={`/item?id=${item.relatedItemId}`}
+                          onClick={(e) => e.stopPropagation()}
                           className="w-10 h-10 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all"
                         >
                           <ArrowRight size={20} />
@@ -212,6 +230,86 @@ function NewsContent() {
                   </div>
                 </motion.div>
               ))}
+
+              <AnimatePresence>
+                {selectedId && selectedItem && (
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={() => {
+                      const params = new URLSearchParams(searchParams.toString());
+                      params.delete('id');
+                      router.push(params.toString() ? `/news?${params.toString()}` : '/news', { scroll: false });
+                    }}
+                    className="fixed inset-0 bg-slate-950/60 backdrop-blur-md z-50 flex items-center justify-center p-4 md:p-6 cursor-pointer"
+                  >
+                    <motion.div
+                      initial={{ scale: 0.95, y: 15, opacity: 0 }}
+                      animate={{ scale: 1, y: 0, opacity: 1 }}
+                      exit={{ scale: 0.95, y: 15, opacity: 0 }}
+                      transition={{ type: 'spring', duration: 0.5 }}
+                      onClick={(e) => e.stopPropagation()}
+                      className="relative w-full max-w-3xl bg-white dark:bg-slate-900 rounded-[2.5rem] overflow-hidden border border-blue-50 dark:border-slate-800 shadow-2xl flex flex-col max-h-[85vh] cursor-default"
+                    >
+                      <button
+                        onClick={() => {
+                          const params = new URLSearchParams(searchParams.toString());
+                          params.delete('id');
+                          router.push(params.toString() ? `/news?${params.toString()}` : '/news', { scroll: false });
+                        }}
+                        className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-slate-200/50 dark:border-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white hover:scale-105 active:scale-95 transition-all"
+                        aria-label="Close"
+                      >
+                        <span className="text-xl font-bold">×</span>
+                      </button>
+
+                      <div className="overflow-y-auto w-full h-full">
+                        {selectedItem.imageUrl && (
+                          <div className="relative aspect-video w-full max-h-[350px]">
+                            <Image
+                              src={selectedItem.imageUrl}
+                              alt={lang === 'ka' ? selectedItem.titleKa : selectedItem.titleEn}
+                              fill
+                              className="object-cover"
+                              referrerPolicy="no-referrer"
+                            />
+                            <div className="absolute top-4 left-4">
+                              <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs font-black uppercase tracking-widest text-blue-600 dark:text-blue-400 flex items-center gap-2">
+                                <Calendar size={14} />
+                                {new Date(selectedItem.createdAt).toLocaleDateString(lang === 'ka' ? 'ka-GE' : 'en-US')}
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        <div className="p-8 md:p-10">
+                          <h1 className="text-xl md:text-3xl font-black mb-6 text-slate-900 dark:text-white leading-tight">
+                            {lang === 'ka' ? selectedItem.titleKa : selectedItem.titleEn}
+                          </h1>
+                          <div className="text-slate-600 dark:text-slate-300 font-medium text-sm md:text-base leading-relaxed whitespace-pre-wrap">
+                            {lang === 'ka' ? selectedItem.contentKa : selectedItem.contentEn}
+                          </div>
+
+                          {selectedItem.sourceUrl && (
+                            <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 flex justify-end">
+                              <a
+                                href={selectedItem.sourceUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-black text-sm rounded-xl hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-all hover:scale-[1.02] active:scale-95"
+                              >
+                                {lang === 'ka' ? 'ორიგინალი წყარო' : 'Original Source'}
+                                <ExternalLink size={16} />
+                              </a>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
               
               {news.length === 0 && (
                 <div className="col-span-full py-20 text-center bg-white dark:bg-slate-900 rounded-[3rem] border-2 border-dashed border-slate-200 dark:border-slate-800">

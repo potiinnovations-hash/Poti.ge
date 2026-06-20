@@ -1,13 +1,20 @@
 import { initializeApp, getApp, getApps } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { initializeFirestore } from 'firebase/firestore';
+import { initializeFirestore, getFirestore } from 'firebase/firestore';
 import firebaseConfig from './firebase-applet-config.json';
 
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
-export const db = initializeFirestore(app, {
-  experimentalForceLongPolling: true,
-}, (firebaseConfig as any).firestoreDatabaseId);
-export const auth = getAuth();
+
+const getDbInstance = () => {
+  try {
+    return getFirestore(app, (firebaseConfig as any).firestoreDatabaseId);
+  } catch (e) {
+    return initializeFirestore(app, {}, (firebaseConfig as any).firestoreDatabaseId);
+  }
+};
+
+export const db = getDbInstance();
+export const auth = getAuth(app);
 
 export enum OperationType {
   CREATE = 'create',

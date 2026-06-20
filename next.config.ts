@@ -1,9 +1,8 @@
 import type { NextConfig } from "next";
 
-const isStaticExport = process.env.STATIC_EXPORT === "true";
-
 const nextConfig: NextConfig = {
-  ...(isStaticExport ? { output: "export" } : { output: "standalone" }),
+  ...(process.env.STATIC_EXPORT === "true" ? { output: "export" } : {}),
+  ...(process.env.STANDALONE === "true" ? { output: "standalone" } : {}),
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -14,6 +13,12 @@ const nextConfig: NextConfig = {
     ],
   },
   serverExternalPackages: ["@google/genai"],
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;

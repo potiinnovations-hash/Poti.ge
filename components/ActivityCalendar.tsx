@@ -34,7 +34,11 @@ export default function ActivityCalendar({ lang, showTitle = true }: ActivityCal
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null);
   const [loading, setLoading] = useState(true);
-  const [hasSetInitialEvent, setHasSetInitialEvent] = useState(false);
+
+  // Set initial selected date on mount to Today
+  useEffect(() => {
+    setSelectedDate(new Date());
+  }, []);
 
   // Subscribe to public calendar events, news, and initiatives
   useEffect(() => {
@@ -96,7 +100,7 @@ export default function ActivityCalendar({ lang, showTitle = true }: ActivityCal
           start: dStr,
           end: dStr,
           allDay: true,
-          link: item.sourceUrl || `/news#${item.id}`
+          link: `/news?id=${item.id}`
         });
       });
     });
@@ -119,39 +123,6 @@ export default function ActivityCalendar({ lang, showTitle = true }: ActivityCal
 
     setEvents(list);
   }, [dbEvents, newsList, initiativesList, lang]);
-
-  // Handle auto-focusing on the upcoming/next planned event on load
-  useEffect(() => {
-    if (events.length > 0 && !hasSetInitialEvent) {
-      const now = new Date();
-      now.setHours(0, 0, 0, 0);
-
-      const upcoming = events
-        .filter((e: any) => e?.start)
-        .map((e: any) => ({ ...e, parsedDate: new Date(e.start) }))
-        .filter((e: any) => !isNaN(e.parsedDate.getTime()))
-        .filter((e: any) => e.parsedDate >= now)
-        .sort((a: any, b: any) => a.parsedDate.getTime() - b.parsedDate.getTime());
-
-      if (upcoming.length > 0) {
-        setSelectedEvent(upcoming[0]);
-        setSelectedDate(new Date(upcoming[0].start));
-        setCurrentDate(new Date(upcoming[0].start));
-      } else {
-        const sorted = [...events]
-          .filter((e: any) => e?.start)
-          .map((e: any) => ({ ...e, parsedDate: new Date(e.start) }))
-          .filter((e: any) => !isNaN(e.parsedDate.getTime()))
-          .sort((a: any, b: any) => a.parsedDate.getTime() - b.parsedDate.getTime());
-        if (sorted.length > 0) {
-          setSelectedEvent(sorted[0]);
-          setSelectedDate(new Date(sorted[0].start));
-          setCurrentDate(new Date(sorted[0].start));
-        }
-      }
-      setHasSetInitialEvent(true);
-    }
-  }, [events, hasSetInitialEvent]);
 
   const getDaysInMonth = (year: number, month: number) => new Date(year, month + 1, 0).getDate();
   
